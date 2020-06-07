@@ -1,18 +1,34 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Home.css";
-
+import { Card, CardBody, CardTitle } from "reactstrap";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-// import { fngetLogin } from "../store/action/index";
 
 function Home(props) {
   console.log("props", props);
 
   return (
-    <div>
+    <div className="detail-container">
       <Header />
-      <div className="welcomeText">Welcome {props.data.userInfo.name}</div>
-
+      <div className="text">Welcome {props.data.userInfo.name}</div>
+      <Card className="containers">
+        <CardBody>
+          <img
+            width="200px"
+            height="200px"
+            src={props.data.userInfo.imgUrl}
+            alt="Profle Pic"
+          />
+        </CardBody>
+        <CardBody>
+          <CardTitle className="text">
+            Name : {props.data.userInfo.name}
+          </CardTitle>
+          {props.data.userInfo.email ? (
+            <p className="text">Eamil : {props.data.userInfo.email}</p>
+          ) : null}
+        </CardBody>
+      </Card>
       <Footer />
     </div>
   );

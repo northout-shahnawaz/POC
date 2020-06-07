@@ -3,10 +3,10 @@ import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import { Link } from "react-router-dom";
 import { Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
-import "./Welcome.css";
+import "./Login.css";
 import { useDispatch } from "react-redux";
 
-function Welcome(props) {
+function Login(props) {
   console.log("welcome screen", props, props.data.userList);
 
   const dispatch = useDispatch();
@@ -129,7 +129,7 @@ function Welcome(props) {
   );
 }
 
-export default Welcome;
+export default Login;
 // if (sessionStorage.getItem("userData")) {
 //   const data = JSON.parse(sessionStorage.getItem("userData"));
 //   console.log("dta", data);
