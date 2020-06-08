@@ -7,8 +7,6 @@ import "./Login.css";
 import { useDispatch } from "react-redux";
 
 function Login(props) {
-  console.log("welcome screen", props, props.data.userList);
-
   const dispatch = useDispatch();
 
   const [userInfo, setuserInfo] = useState({
@@ -16,7 +14,7 @@ function Login(props) {
     password: "",
   });
 
-  const fnLogin = (res) => {
+  const getLogin = (res) => {
     dispatch({ type: "AUTH_LOGIN", payload: res });
   };
 
@@ -33,23 +31,18 @@ function Login(props) {
     if (loginUser === undefined) {
       alert("Invalied userid and passoword");
     } else {
-      fnLogin(loginUser);
+      getLogin(loginUser);
     }
   };
 
   const responseFacebook = (response) => {
-    console.log("facebook console");
     console.log(response);
-
     const resp = { name: response.name, imageUrl: response.picture.data.url };
-
-    fnLogin(resp);
+    getLogin(resp);
   };
 
   const responseGoogle = (response) => {
-    console.log("google console");
-    console.log(response);
-    fnLogin(response.profileObj);
+    getLogin(response.profileObj);
   };
 
   return (
@@ -107,7 +100,6 @@ function Login(props) {
                 appId="1015016365581153"
                 autoLoad={true}
                 fields="name,email,picture"
-                onClick={""}
                 callback={responseFacebook}
               />
               <br />
@@ -130,17 +122,3 @@ function Login(props) {
 }
 
 export default Login;
-// if (sessionStorage.getItem("userData")) {
-//   const data = JSON.parse(sessionStorage.getItem("userData"));
-//   console.log("dta", data);
-
-//   fnLogin(data.userInfo);
-//   return <Redirect to={"/home"} />;
-// }
-// const sessionData = {
-//   isLoggedin: true,
-//   userInfo: resp,
-//   uid: "admin",
-//   password: "admin",
-// };
-// sessionStorage.setItem("userData", JSON.stringify(sessionData));
